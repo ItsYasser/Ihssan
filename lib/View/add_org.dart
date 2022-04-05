@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_festival/Widgets/orgClass.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_text_field.dart';
 
 class AddOrg extends StatelessWidget {
   const AddOrg({Key? key}) : super(key: key);
-
+final  CollectionReference organisation =FirebaseFirestore.instance.collection("Organisation");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +114,7 @@ class AddOrg extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Button(
+        onPressed : () { },
         text: "اضف",
         onTap: () {},
         margin: EdgeInsets.symmetric(
