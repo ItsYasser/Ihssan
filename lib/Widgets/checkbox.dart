@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_festival/Widgets/custom_field.dart';
 
 import '../Util/constants.dart';
 import '../View/add_org.dart';
 
 class CheckBoxItem extends StatefulWidget {
   final String text, hintText;
-  final Function(String val) value;
+  final Function(String val, bool? checked) value;
   CheckBoxItem(
       {Key? key, required this.text, required this.value, this.hintText = ""})
       : super(key: key);
@@ -35,7 +36,7 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
                 setState(() {
                   isChecked = val!;
                 });
-                if (isChecked) widget.value(widget.text);
+                if (!others) widget.value(widget.text, val);
               },
               checkColor: Colors.white,
               side: BorderSide(
@@ -54,7 +55,9 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
         if (others && isChecked)
           CustomField(
             hint: widget.hintText,
-            onSaved: (val) {},
+            onSaved: (val) {
+              widget.value(val!, isChecked);
+            },
           ),
       ],
     );

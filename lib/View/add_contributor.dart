@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 import 'package:flutter/material.dart';
+import 'package:flutter_festival/Controller/add_contributor_controller.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,11 +14,8 @@ import '../Widgets/custom_text_field.dart';
 
 class AddContributor extends StatelessWidget {
   AddContributor({Key? key}) : super(key: key);
-  late String orgName, phoneNumber;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  final CollectionReference organisation =
-      FirebaseFirestore.instance.collection("Organisation");
+  AddContributorController controller = Get.put(AddContributorController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +29,15 @@ class AddContributor extends StatelessWidget {
                 )),
         elevation: 0,
         centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: kPrimaryColor,
+          ),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Directionality(
@@ -66,7 +73,7 @@ class AddContributor extends StatelessWidget {
                         CustomField(
                           hint: "جمعية الوفاء , جمعية البركة",
                           onSaved: (val) {
-                            print(val);
+                            controller.name = val!;
                           },
                         ),
                         Text(
@@ -78,8 +85,9 @@ class AddContributor extends StatelessWidget {
                         ),
                         CustomField(
                           hint: "+213669316927",
+                          keyboardType: TextInputType.phone,
                           onSaved: (val) {
-                            print(val);
+                            controller.phoneNumber = val!;
                           },
                         ),
                         Text(
@@ -104,29 +112,29 @@ class AddContributor extends StatelessWidget {
                         ),
                         CheckBoxItem(
                             text: "ملابس",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.donations(val, checked!);
                             }),
                         CheckBoxItem(
                             text: "مبلغ نقدي",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.donations(val, checked!);
                             }),
                         CheckBoxItem(
                             text: "غذاء",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.donations(val, checked!);
                             }),
                         CheckBoxItem(
                             text: "تطوع لدار رحمة",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.donations(val, checked!);
                             }),
                         CheckBoxItem.others(
                             text: "تبرع او تطوع من نوع اخر",
                             hintText: "اختصر نوع التبرع او التطوع في بضع كلمات",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.donations(val, checked!);
                             }),
                         Text(
                           "معلومات اضافية",
@@ -138,7 +146,9 @@ class AddContributor extends StatelessWidget {
                         CustomField(
                             maxLines: 5,
                             hint: "قدم معلومات او شرح اكثر",
-                            onSaved: (val) {}),
+                            onSaved: (val) {
+                              controller.extraInfo = val!;
+                            }),
                       ],
                     ),
                   ),
@@ -152,7 +162,10 @@ class AddContributor extends StatelessWidget {
         text: "اضف",
         onTap: () {
           _formKey.currentState?.save();
-          Get.back();
+          if (_formKey.currentState!.validate()) {
+            controller.addPerson();
+          }
+          // Get.back();
         },
         margin: EdgeInsets.only(left: 13, right: 13, bottom: 10),
         borderRadius: 13,

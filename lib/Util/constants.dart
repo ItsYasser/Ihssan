@@ -14,3 +14,4 @@ List<BoxShadow> kBoxShadow = [
     blurRadius: 3,
   )
 ];
+Color kDarkColor = kPrimaryColor.withOpacity(.4);

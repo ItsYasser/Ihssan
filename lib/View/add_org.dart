@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 import 'package:flutter/material.dart';
+import 'package:flutter_festival/Controller/add_organisation.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../Widgets/button_widget.dart';
+import '../Widgets/custom_field.dart';
 import '../Widgets/custom_text_field.dart';
 
 class AddOrg extends StatelessWidget {
@@ -15,8 +17,7 @@ class AddOrg extends StatelessWidget {
   late String orgName, phoneNumber;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final CollectionReference organisation =
-      FirebaseFirestore.instance.collection("Organisation");
+  AddOrganisationController controller = Get.put(AddOrganisationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +31,15 @@ class AddOrg extends StatelessWidget {
                 )),
         elevation: 0,
         centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: kPrimaryColor,
+          ),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Directionality(
@@ -65,7 +75,7 @@ class AddOrg extends StatelessWidget {
                         CustomField(
                           hint: "جمعية الوفاء , جمعية البركة",
                           onSaved: (val) {
-                            print(val);
+                            controller.name = val!;
                           },
                         ),
                         Text(
@@ -76,9 +86,10 @@ class AddOrg extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         CustomField(
+                          keyboardType: TextInputType.phone,
                           hint: "+213669316927",
                           onSaved: (val) {
-                            print(val);
+                            controller.phoneNumber = val!;
                           },
                         ),
                         Text(
@@ -90,9 +101,7 @@ class AddOrg extends StatelessWidget {
                         ),
                         CustomField(
                           hint: "اظغط لتحديد العنوان",
-                          onSaved: (val) {
-                            print(val);
-                          },
+                          onSaved: (val) {},
                         ),
                         Text(
                           "خدمات الجمعية",
@@ -103,29 +112,27 @@ class AddOrg extends StatelessWidget {
                         ),
                         CheckBoxItem(
                             text: "التكفل بذوي الاحتياجات الخاصة",
-                            value: (val) {
-                              print(val);
-                            }),
+                            value: (val, checked) {}),
                         CheckBoxItem(
                             text: "مطاعم الرحمة",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.servicesHandler(val, checked!);
                             }),
                         CheckBoxItem(
                             text: "قفة رمضان",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.servicesHandler(val, checked!);
                             }),
                         CheckBoxItem(
                             text: "مساعدة اليتامى",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.servicesHandler(val, checked!);
                             }),
                         CheckBoxItem.others(
                             text: "خدمة أخرى",
                             hintText: "اختصر الخدمة في بضع كلمات ",
-                            value: (val) {
-                              print(val);
+                            value: (val, checked) {
+                              controller.servicesHandler(val, checked!);
                             }),
                         Text(
                           "ملف توثيق الجمعية",
@@ -174,46 +181,12 @@ class AddOrg extends StatelessWidget {
         text: "اضف",
         onTap: () {
           _formKey.currentState?.save();
-          Get.back();
+          if (_formKey.currentState!.validate()) {
+            controller.addOrganisation();
+          }
         },
         margin: EdgeInsets.only(left: 13, right: 13, bottom: 10),
         borderRadius: 13,
-      ),
-    );
-  }
-}
-
-class CustomField extends StatelessWidget {
-  final String hint;
-  final Function(String?) onSaved;
-  const CustomField({Key? key, this.hint = "", required this.onSaved})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 7),
-      child: TextFormField(
-        onSaved: onSaved,
-        keyboardType: TextInputType.phone,
-        decoration: InputDecoration(
-          contentPadding:
-              new EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: hint,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(kRadius),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kSecondaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(kRadius - 5),
-            ),
-          ),
-        ),
       ),
     );
   }
