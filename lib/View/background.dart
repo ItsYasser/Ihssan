@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BackGround extends StatelessWidget {
   const BackGround({
@@ -62,17 +63,42 @@ class BackGround extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    height: 100,
-                    width: 200,
-                    color: Colors.black38,
                     alignment: Alignment.center,
-                    child: Text("Logo placholder"),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/logo.svg",
+                          fit: BoxFit.contain,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40, top: 5),
+                          child: Text(
+                            "احسان",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(
+                                    fontFamily:
+                                        GoogleFonts.reemKufi().fontFamily,
+                                    color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text("App Name PlaceHolder"),
                   SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
-                  Text("Description")
+                  Text(
+                    "تطبيق احســان ، تطبيق لرسم البسمة على وجوه المحتاجين",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  )
                 ],
               ),
             ),
