@@ -8,10 +8,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../Widgets/button_widget.dart';
+import '../Widgets/custom_field.dart';
 import '../Widgets/custom_text_field.dart';
 
-class AddOrg extends StatelessWidget {
-  AddOrg({Key? key}) : super(key: key);
+class AddContributor extends StatelessWidget {
+  AddContributor({Key? key}) : super(key: key);
   late String orgName, phoneNumber;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -24,7 +25,7 @@ class AddOrg extends StatelessWidget {
       extendBodyBehindAppBar: true,
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("إضافة جمعية",
+        title: Text("إضافة تبرع - تطوع",
             style: Theme.of(context).textTheme.headline4?.copyWith(
                   color: kPrimaryColor,
                 )),
@@ -56,7 +57,7 @@ class AddOrg extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "اسم الجمعية",
+                          "اسم المتبرع - المتطوع",
                           style: TextStyle(
                               fontSize: 18,
                               color: kTextColor,
@@ -95,72 +96,49 @@ class AddOrg extends StatelessWidget {
                           },
                         ),
                         Text(
-                          "خدمات الجمعية",
+                          "نوع التبرع",
                           style: TextStyle(
                               fontSize: 18,
                               color: kTextColor,
                               fontWeight: FontWeight.bold),
                         ),
                         CheckBoxItem(
-                            text: "التكفل بذوي الاحتياجات الخاصة",
+                            text: "ملابس",
                             value: (val) {
                               print(val);
                             }),
                         CheckBoxItem(
-                            text: "مطاعم الرحمة",
+                            text: "مبلغ نقدي",
                             value: (val) {
                               print(val);
                             }),
                         CheckBoxItem(
-                            text: "قفة رمضان",
+                            text: "غذاء",
                             value: (val) {
                               print(val);
                             }),
                         CheckBoxItem(
-                            text: "مساعدة اليتامى",
+                            text: "تطوع لدار رحمة",
                             value: (val) {
                               print(val);
                             }),
                         CheckBoxItem.others(
-                            text: "خدمة أخرى",
-                            hintText: "اختصر الخدمة في بضع كلمات ",
+                            text: "تبرع او تطوع من نوع اخر",
+                            hintText: "اختصر نوع التبرع او التطوع في بضع كلمات",
                             value: (val) {
                               print(val);
                             }),
                         Text(
-                          "ملف توثيق الجمعية",
+                          "معلومات اضافية",
                           style: TextStyle(
                               fontSize: 18,
                               color: kTextColor,
                               fontWeight: FontWeight.bold),
                         ),
-                        Container(
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(kRadius),
-                              color: Colors.white,
-                              boxShadow: kBoxShadow),
-                          padding: EdgeInsets.all(15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "تحميل الملف",
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.grey),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.file_upload_outlined,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        )
+                        CustomField(
+                            maxLines: 5,
+                            hint: "قدم معلومات او شرح اكثر",
+                            onSaved: (val) {}),
                       ],
                     ),
                   ),
@@ -178,42 +156,6 @@ class AddOrg extends StatelessWidget {
         },
         margin: EdgeInsets.only(left: 13, right: 13, bottom: 10),
         borderRadius: 13,
-      ),
-    );
-  }
-}
-
-class CustomField extends StatelessWidget {
-  final String hint;
-  final Function(String?) onSaved;
-  const CustomField({Key? key, this.hint = "", required this.onSaved})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 7),
-      child: TextFormField(
-        onSaved: onSaved,
-        keyboardType: TextInputType.phone,
-        decoration: InputDecoration(
-          contentPadding:
-              new EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: hint,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(kRadius),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kSecondaryColor),
-            borderRadius: BorderRadius.all(
-              Radius.circular(kRadius - 5),
-            ),
-          ),
-        ),
       ),
     );
   }

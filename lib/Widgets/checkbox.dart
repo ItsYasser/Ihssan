@@ -5,7 +5,7 @@ import '../View/add_org.dart';
 
 class CheckBoxItem extends StatefulWidget {
   final String text, hintText;
-  final Function(bool val) value;
+  final Function(String val) value;
   CheckBoxItem(
       {Key? key, required this.text, required this.value, this.hintText = ""})
       : super(key: key);
@@ -35,7 +35,7 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
                 setState(() {
                   isChecked = val!;
                 });
-                widget.value(val!);
+                if (isChecked) widget.value(widget.text);
               },
               checkColor: Colors.white,
               side: BorderSide(

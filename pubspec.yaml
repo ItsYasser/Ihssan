@@ -41,7 +41,7 @@ dependencies:
   get: ^4.3.8
   intro_slider: ^3.0.4
   google_fonts: ^2.3.1
-
+  flutter_speed_dial: ^5.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

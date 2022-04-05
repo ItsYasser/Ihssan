@@ -45,20 +45,12 @@ class Button extends StatelessWidget {
         margin: margin,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: backGroundColor,
-          borderRadius: BorderRadius.circular(
-            borderRadius,
-          ),
-          border: Border.all(color: borderColor),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(.5),
-              offset: const Offset(0, 0),
-              spreadRadius: 2,
-              blurRadius: 3,
-            )
-          ],
-        ),
+            color: backGroundColor,
+            borderRadius: BorderRadius.circular(
+              borderRadius,
+            ),
+            border: Border.all(color: borderColor),
+            boxShadow: kBoxShadow),
         child: Text(
           text,
           style: TextStyle(

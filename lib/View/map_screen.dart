@@ -3,7 +3,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
+import 'package:flutter_festival/View/add_contributor.dart';
 import 'package:flutter_festival/View/add_org.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,6 +37,21 @@ class MapScreenState extends State<MapScreen> {
             mapType: MapType.normal,
             zoomControlsEnabled: false,
             mapToolbarEnabled: false,
+            buildingsEnabled: false,
+            markers: {
+              Marker(
+                markerId: const MarkerId('origin'),
+                infoWindow: const InfoWindow(
+                  title: 'Pickup',
+                ),
+                onTap: () {
+                  print("details");
+                },
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueGreen),
+                position: LatLng(37.42796133580664, -122.085749655962),
+              ),
+            },
             initialCameraPosition: _initialPos,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
@@ -96,18 +114,22 @@ class MapScreenState extends State<MapScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            onPressed: () {
-              Get.to(() => AddOrg());
-            },
-            backgroundColor: kPrimaryColor,
-            child: Icon(Icons.add),
-          ),
+          Speed(),
           SizedBox(
             height: 10,
           ),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                      target: LatLng(37.42796133580664, -122.085749655962),
+                      zoom: 15),
+                ),
+              );
+            },
+            heroTag: "sqdsq",
             backgroundColor: Colors.white,
             child: Icon(
               Icons.my_location,
@@ -119,6 +141,58 @@ class MapScreenState extends State<MapScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class Speed extends StatelessWidget {
+  bool _dialVisible = true;
+  @override
+  Widget build(BuildContext context) {
+    return SpeedDial(
+      animatedIcon: AnimatedIcons.add_event,
+
+      animatedIconTheme: const IconThemeData(size: 22.0),
+      // this is ignored if animatedIcon is non null
+      // child: Icon(Icons.add),
+      visible: _dialVisible,
+      curve: Curves.bounceIn,
+      overlayColor: Colors.black,
+      overlayOpacity: 0.5,
+      tooltip: 'Speed Dial',
+      heroTag: 'speed-dial-hero-tag',
+      backgroundColor: kPrimaryColor,
+      foregroundColor: Colors.white,
+      elevation: 8.0,
+      shape: const CircleBorder(),
+      children: [
+        SpeedDialChild(
+            child: SvgPicture.asset(
+              "assets/images/charity.svg",
+              width: 25,
+              height: 25,
+            ),
+            backgroundColor: Colors.white,
+            label: 'اضافة جمعية    ',
+            labelStyle:
+                Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 18.0),
+            onTap: () {
+              Get.to(() => AddOrg());
+            }),
+        SpeedDialChild(
+            child: SvgPicture.asset(
+              "assets/images/contributor.svg",
+              width: 25,
+              height: 25,
+            ),
+            backgroundColor: Colors.white,
+            label: "تطوع او تبرع",
+            labelStyle:
+                Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 18.0),
+            onTap: () {
+              Get.to(() => AddContributor());
+            }),
+      ],
     );
   }
 }
