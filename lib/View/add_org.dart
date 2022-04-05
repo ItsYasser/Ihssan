@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_festival/Widgets/orgClass.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_text_field.dart';
@@ -11,6 +13,9 @@ class AddOrg extends StatelessWidget {
   AddOrg({Key? key}) : super(key: key);
   late String orgName, phoneNumber;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final CollectionReference organisation =
+      FirebaseFirestore.instance.collection("Organisation");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
