@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       extendBody: true,
       extendBodyBehindAppBar: true,
-      body: OnBoarding(),
+      body: AddOrg(),
     );
   }
 }

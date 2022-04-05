@@ -8,8 +8,9 @@ import '../Widgets/button_widget.dart';
 import '../Widgets/custom_text_field.dart';
 
 class AddOrg extends StatelessWidget {
-  const AddOrg({Key? key}) : super(key: key);
-
+  AddOrg({Key? key}) : super(key: key);
+  late String orgName, phoneNumber;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,80 +31,98 @@ class AddOrg extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            Opacity(
-              opacity: 0.07,
-              child: SvgPicture.asset(
-                "assets/images/background.svg",
-                fit: BoxFit.cover,
-              ),
-            ),
+            // Opacity(
+            //   opacity: 0.07,
+            //   child: SvgPicture.asset(
+            //     "assets/images/background.svg",
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(12, 25, 12, 0),
                 child: SingleChildScrollView(
                   physics: ClampingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "اسم الجمعية",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kTextColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      CustomField(hint: "جمعية الوفاء , جمعية البركة"),
-                      Text(
-                        "رقم الهاتف",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kTextColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      CustomField(hint: "+213669316927"),
-                      Text(
-                        "العنوان",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kTextColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      CustomField(hint: "اظغط لتحديد العنوان"),
-                      Text(
-                        "خدمات الجمعية",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: kTextColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      CheckBoxItem(
-                          text: "التكفل بذوي الاحتياجات الخاصة",
-                          value: (val) {
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "اسم الجمعية",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: kTextColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        CustomField(
+                          hint: "جمعية الوفاء , جمعية البركة",
+                          onSaved: (val) {
                             print(val);
-                          }),
-                      CheckBoxItem(
-                          text: "مطاعم الرحمة",
-                          value: (val) {
+                          },
+                        ),
+                        Text(
+                          "رقم الهاتف",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: kTextColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        CustomField(
+                          hint: "+213669316927",
+                          onSaved: (val) {
                             print(val);
-                          }),
-                      CheckBoxItem(
-                          text: "قفة رمضان",
-                          value: (val) {
+                          },
+                        ),
+                        Text(
+                          "العنوان",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: kTextColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        CustomField(
+                          hint: "اظغط لتحديد العنوان",
+                          onSaved: (val) {
                             print(val);
-                          }),
-                      CheckBoxItem(
-                          text: "مساعدة اليتامى",
-                          value: (val) {
-                            print(val);
-                          }),
-                      CheckBoxItem.others(
-                          text: "خدمة أخرى",
-                          hintText: "اختصر الخدمة في بضع كلمات ",
-                          value: (val) {
-                            print(val);
-                          })
-                    ],
+                          },
+                        ),
+                        Text(
+                          "خدمات الجمعية",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: kTextColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        CheckBoxItem(
+                            text: "التكفل بذوي الاحتياجات الخاصة",
+                            value: (val) {
+                              print(val);
+                            }),
+                        CheckBoxItem(
+                            text: "مطاعم الرحمة",
+                            value: (val) {
+                              print(val);
+                            }),
+                        CheckBoxItem(
+                            text: "قفة رمضان",
+                            value: (val) {
+                              print(val);
+                            }),
+                        CheckBoxItem(
+                            text: "مساعدة اليتامى",
+                            value: (val) {
+                              print(val);
+                            }),
+                        CheckBoxItem.others(
+                            text: "خدمة أخرى",
+                            hintText: "اختصر الخدمة في بضع كلمات ",
+                            value: (val) {
+                              print(val);
+                            })
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -113,7 +132,9 @@ class AddOrg extends StatelessWidget {
       ),
       bottomNavigationBar: Button(
         text: "اضف",
-        onTap: () {},
+        onTap: () {
+          _formKey.currentState?.save();
+        },
         margin: EdgeInsets.symmetric(
           horizontal: 13,
           vertical: 15,
@@ -126,13 +147,15 @@ class AddOrg extends StatelessWidget {
 
 class CustomField extends StatelessWidget {
   final String hint;
-
-  const CustomField({Key? key, this.hint = ""}) : super(key: key);
+  final Function(String?) onSaved;
+  const CustomField({Key? key, this.hint = "", required this.onSaved})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 7),
       child: TextFormField(
+        onSaved: onSaved,
         decoration: InputDecoration(
           contentPadding:
               new EdgeInsets.symmetric(vertical: 10, horizontal: 20),

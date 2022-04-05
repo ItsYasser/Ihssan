@@ -44,7 +44,7 @@ class _OnBoardingState extends State<OnBoarding> {
           Expanded(
             child: PageView(
               controller: pageController,
-              // physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,

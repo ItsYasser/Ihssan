@@ -51,7 +51,11 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
             ),
           ],
         ),
-        if (others && isChecked) CustomField(hint: widget.hintText),
+        if (others && isChecked)
+          CustomField(
+            hint: widget.hintText,
+            onSaved: (val) {},
+          ),
       ],
     );
   }
