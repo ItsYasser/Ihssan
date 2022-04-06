@@ -44,7 +44,7 @@ class AddContributorController extends GetxController {
     circularDialog();
     await _person.doc(id).set(contributor.toJason());
     Get.back(closeOverlays: true);
-    Get.back();
+
     snackBar(
       title: "تمت الاضافة بنجاح",
       message: "تم اضافة التبرع بنجاح , شكرا".tr,
