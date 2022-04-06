@@ -75,7 +75,7 @@ class AddContributor extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         CustomField(
-                          hint: "جمعية الوفاء , جمعية البركة",
+                          hint: "ياسر , امين ....",
                           onSaved: (val) {
                             controller.name = val!;
                           },

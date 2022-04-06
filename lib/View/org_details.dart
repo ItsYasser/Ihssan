@@ -2,18 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
 
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Models/organisation_model.dart';
 import '../Util/functions.dart';
-import '../Widgets/button_widget.dart';
 
 class OrganisationDetails extends StatelessWidget {
   final Organizer org;
   double gap = 20;
 
-  OrganisationDetails(this.org);
+  OrganisationDetails(this.org, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -25,6 +25,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../Controller/filter_controller.dart';
 import '../Models/organisation_model.dart';
 import '../Util/functions.dart';
+import '../Widgets/multiple_fab.dart';
 
 class MapScreen extends StatefulWidget {
   final String choice;
@@ -328,7 +329,7 @@ class MapScreenState extends State<MapScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Speed(),
+          MultipleFab(),
           SizedBox(
             height: 10,
           ),
@@ -344,7 +345,7 @@ class MapScreenState extends State<MapScreen> {
                 ),
               );
             },
-            heroTag: "sqdsq",
+            heroTag: "hero",
             backgroundColor: Colors.white,
             child: Icon(
               Icons.my_location,
@@ -356,58 +357,6 @@ class MapScreenState extends State<MapScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class Speed extends StatelessWidget {
-  bool _dialVisible = true;
-  @override
-  Widget build(BuildContext context) {
-    return SpeedDial(
-      animatedIcon: AnimatedIcons.add_event,
-
-      animatedIconTheme: const IconThemeData(size: 22.0),
-      // this is ignored if animatedIcon is non null
-      // child: Icon(Icons.add),
-      visible: _dialVisible,
-      curve: Curves.bounceIn,
-      overlayColor: Colors.black,
-      overlayOpacity: 0.5,
-      tooltip: 'Speed Dial',
-      heroTag: 'speed-dial-hero-tag',
-      backgroundColor: kPrimaryColor,
-      foregroundColor: Colors.white,
-      elevation: 8.0,
-      shape: const CircleBorder(),
-      children: [
-        SpeedDialChild(
-            child: SvgPicture.asset(
-              "assets/images/charity.svg",
-              width: 25,
-              height: 25,
-            ),
-            backgroundColor: Colors.white,
-            label: 'اضافة جمعية    ',
-            labelStyle:
-                Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 18.0),
-            onTap: () {
-              Get.to(() => AddOrg());
-            }),
-        SpeedDialChild(
-            child: SvgPicture.asset(
-              "assets/images/contributor.svg",
-              width: 25,
-              height: 25,
-            ),
-            backgroundColor: Colors.white,
-            label: "تطوع او تبرع",
-            labelStyle:
-                Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 18.0),
-            onTap: () {
-              Get.to(() => AddContributor());
-            }),
-      ],
     );
   }
 }

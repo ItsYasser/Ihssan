@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
-import 'package:flutter_festival/main.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../Widgets/sliderItem.dart';
 import 'choice_screen.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -46,93 +44,66 @@ class _OnBoardingState extends State<OnBoarding> {
               controller: pageController,
               physics: NeverScrollableScrollPhysics(),
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //TODO: fontweight bold or regular ?
-                    Text(
-                      "متطوع او متبرع",
-                      style: Theme.of(context).textTheme.headline4?.copyWith(
-                            color: kPrimaryColor,
+                SliderItem(
+                  title: "متطوع او متبرع",
+                  imagePath: "assets/images/illustration2.svg",
+                  description: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        style: DefaultTextStyle.of(context).style.copyWith(
+                            fontSize: 15, color: kPrimaryColor, height: 2),
+                        children: <TextSpan>[
+                          TextSpan(text: "بدخولك كشخص متطوع او متبرع يمكنك "),
+                          TextSpan(
+                            text: "رسم البهجة",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: kSecondaryColor,
+                                height: 2),
                           ),
-                    ),
-                    SvgPicture.asset(
-                      "assets/images/illustration2.svg",
-                      height: size.height * 0.40,
-                    ),
-
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          style: DefaultTextStyle.of(context).style.copyWith(
-                              fontSize: 15, color: kPrimaryColor, height: 2),
-                          children: <TextSpan>[
-                            TextSpan(text: "بدخولك كشخص متطوع او متبرع يمكنك "),
-                            TextSpan(
-                              text: "رسم البهجة",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: kSecondaryColor,
-                                  height: 2),
-                            ),
-                            TextSpan(
-                              text:
-                                  "\nفي وجوه الكثير من المحتاجين من خلال صدقتك التي تضيفها\nعلى الخريطة و تتكفل الجمعيات الخيرية بايصالها لهم ",
-                            ),
-                            TextSpan(
-                              text: "\nساهم في صنع البسمة",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: kSecondaryColor,
-                                  height: 2),
-                            ),
-                          ]),
-                    ),
-                  ],
+                          TextSpan(
+                            text:
+                                "\nفي وجوه الكثير من المحتاجين من خلال صدقتك التي تضيفها\nعلى الخريطة و تتكفل الجمعيات الخيرية بايصالها لهم ",
+                          ),
+                          TextSpan(
+                            text: "\nساهم في صنع البسمة",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: kSecondaryColor,
+                                height: 2),
+                          ),
+                        ]),
+                  ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //TODO: fontweight bold or regular ?
-                    Text(
-                      "الجمعيات الخيرية",
-                      style: Theme.of(context).textTheme.headline4?.copyWith(
-                            color: kPrimaryColor,
+                SliderItem(
+                  title: "الجمعيات الخيرية",
+                  imagePath: "assets/images/illustration1.svg",
+                  description: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        style: DefaultTextStyle.of(context).style.copyWith(
+                            fontSize: 15, color: kPrimaryColor, height: 2),
+                        children: <TextSpan>[
+                          TextSpan(text: "سجل دخولك "),
+                          TextSpan(
+                            text: "كجمعية خيرية ",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: kSecondaryColor,
+                                height: 2),
                           ),
-                    ),
-                    SvgPicture.asset(
-                      "assets/images/illustration1.svg",
-                      height: size.height * 0.40,
-                    ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          style: DefaultTextStyle.of(context).style.copyWith(
-                              fontSize: 15, color: kPrimaryColor, height: 2),
-                          children: <TextSpan>[
-                            TextSpan(text: "سجل دخولك "),
-                            TextSpan(
-                              text: "كجمعية خيرية ",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: kSecondaryColor,
-                                  height: 2),
-                            ),
-                            TextSpan(
-                                text:
-                                    "و تمكن من معرفة\nالأشخاص المتطوعين و المتبرعين اللذين يمكنهم مساعدة\nالفقراء و المحتاجين عن"),
-                            TextSpan(
-                              text: " طريق جمعيتكم",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: kSecondaryColor,
-                                  height: 2),
-                            ),
-                          ]),
-                    ),
-                  ],
+                          TextSpan(
+                              text:
+                                  "و تمكن من معرفة\nالأشخاص المتطوعين و المتبرعين اللذين يمكنهم مساعدة\nالفقراء و المحتاجين عن"),
+                          TextSpan(
+                            text: " طريق جمعيتكم",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: kSecondaryColor,
+                                height: 2),
+                          ),
+                        ]),
+                  ),
                 ),
               ],
             ),

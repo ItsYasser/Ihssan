@@ -46,9 +46,10 @@ class PickFromMapState extends State<PickFromMap> {
   }
 
   static final CameraPosition _initialPos = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(36.2658, 2.7595),
     zoom: 14.4746,
   );
+
   Marker? markerPosition = null;
   void addMarker(LatLng pos) {
     setState(() {

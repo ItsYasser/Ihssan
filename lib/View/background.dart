@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:math' as math;
 
 class Splash extends StatelessWidget {
   const Splash({
@@ -47,8 +48,12 @@ class Splash extends StatelessWidget {
           Positioned(
             top: 0,
             left: size.width * 0.035,
-            child: SvgPicture.asset(
-              "assets/images/lantern.svg",
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.rotationY(math.pi),
+              child: SvgPicture.asset(
+                "assets/images/lantern.svg",
+              ),
             ),
           ),
           Padding(

@@ -18,13 +18,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    //  SystemChrome.setSystemUIOverlayStyle(
-    //       SystemUiOverlayStyle(statusBarColor: Colors.blue));
     return GetMaterialApp(
-        title: 'Flutter Festival',
-        home: HomePage(),
+        title: 'Ihsan',
+        home: const HomePage(),
         theme: ThemeData(
           splashColor: kPrimaryColor,
           primaryColor: kPrimaryColor,
@@ -40,16 +40,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<void>(
-          future: Future.delayed(Duration(seconds: 5)),
+          future: Future.delayed(const Duration(seconds: 5)),
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Splash();
+                return const Splash();
               default:
                 if (snapshot.hasError)
                   return Text('Error: ${snapshot.error}');
                 else
-                  return OnBoarding();
+                  return const OnBoarding();
             }
           }),
     );

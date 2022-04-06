@@ -27,39 +27,12 @@ bool containsAny(List<dynamic>? list1, List<dynamic>? list2) {
   return found;
 }
 
-class CustomPageRoute<T> extends PageRoute<T> {
-  CustomPageRoute(this.child);
-  @override
-  // TODO: implement barrierColor
-  Color get barrierColor => Colors.black;
-
-  @override
-  Null get barrierLabel => null;
-
-  final Widget child;
-
-  @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
-    return FadeTransition(
-      opacity: animation,
-      child: child,
-    );
-  }
-
-  @override
-  bool get maintainState => true;
-
-  @override
-  Duration get transitionDuration => Duration(milliseconds: 500);
-}
-
-void phone_call(String phone) async => await launch("tel://$phone");
+void phoneCall(String phone) async => await launch("tel://$phone");
 Future<dynamic> myDialog(String title) {
   return Get.dialog(
     Dialog(
         backgroundColor: Colors.transparent,
-        insetPadding: EdgeInsets.all(10),
+        insetPadding: const EdgeInsets.all(10),
         child: Container(
             width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -74,20 +47,20 @@ Future<dynamic> myDialog(String title) {
                     spreadRadius: 5)
               ],
             ),
-            padding: EdgeInsets.fromLTRB(10, 10, 20, 10),
+            padding: const EdgeInsets.fromLTRB(10, 10, 20, 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                CircularProgressIndicator(),
+                const CircularProgressIndicator(),
               ],
             ))),
     barrierDismissible: false,
