@@ -105,7 +105,7 @@ class _AddOrgState extends State<AddOrg> {
                         ),
                         CustomField(
                           keyboardType: TextInputType.phone,
-                          hint: "+213669316927",
+                          hint: "0669316927",
                           onSaved: (val) {
                             controller.phoneNumber = val!;
                           },
