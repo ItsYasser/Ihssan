@@ -31,9 +31,8 @@ class ChoiceScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
-              top: size.height * 0.13,
-            ),
+            padding:
+                EdgeInsets.only(top: size.height * 0.13, right: 10, left: 10),
             child: Align(
               alignment: Alignment.center,
               child: Column(
