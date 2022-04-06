@@ -9,19 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b284034-f0aa-4e9c-9fc3-b137acba66f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/flutter_festival_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/flutter_festival_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Controller/add_organisation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Controller/add_organisation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/organisation_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/organisation_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/View/add_org.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/View/add_org.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/View/org_detals.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/View/org_detals.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="0b284034-f0aa-4e9c-9fc3-b137acba66f2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,21 +43,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="272" key="GridCell.Tab.0.bottom" timestamp="1649221127242">
+    <state width="1237" height="272" key="GridCell.Tab.0.bottom" timestamp="1649223795495">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="272" key="GridCell.Tab.0.bottom/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649221127242" />
-    <state width="1237" height="272" key="GridCell.Tab.0.center" timestamp="1649221127242">
+    <state width="1237" height="272" key="GridCell.Tab.0.bottom/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649223795495" />
+    <state width="1237" height="272" key="GridCell.Tab.0.center" timestamp="1649223795495">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="272" key="GridCell.Tab.0.center/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649221127242" />
-    <state width="1237" height="272" key="GridCell.Tab.0.left" timestamp="1649221127242">
+    <state width="1237" height="272" key="GridCell.Tab.0.center/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649223795495" />
+    <state width="1237" height="272" key="GridCell.Tab.0.left" timestamp="1649223795495">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="272" key="GridCell.Tab.0.left/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649221127242" />
-    <state width="1237" height="272" key="GridCell.Tab.0.right" timestamp="1649221127242">
+    <state width="1237" height="272" key="GridCell.Tab.0.left/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649223795495" />
+    <state width="1237" height="272" key="GridCell.Tab.0.right" timestamp="1649223795495">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="272" key="GridCell.Tab.0.right/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649221127242" />
+    <state width="1237" height="272" key="GridCell.Tab.0.right/0.0.1280.720/2880.0.1920.1080@0.0.1280.720" timestamp="1649223795495" />
   </component>
 </project>
