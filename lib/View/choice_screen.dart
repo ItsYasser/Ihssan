@@ -73,7 +73,7 @@ class ChoiceScreen extends StatelessWidget {
                         title: "متبرع-متطوع",
                         onTap: () {
                           Get.to(() => MapScreen(
-                                choice: "المتبرعين و المتطوعين",
+                                choice: "الجمعيات الخيرية",
                               ));
                         },
                       ),
@@ -82,7 +82,7 @@ class ChoiceScreen extends StatelessWidget {
                         title: "جمعية خيرية",
                         onTap: () {
                           Get.to(() => MapScreen(
-                                choice: "الجمعيات الخيرية",
+                                choice: "المتبرعين و المتطوعين",
                               ));
                         },
                       ),

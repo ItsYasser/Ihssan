@@ -151,7 +151,7 @@ class _AddOrgState extends State<AddOrg> {
                               icon: Icons.map,
                               onTap: () {
                                 Get.to(PickFromMap(
-                                  organisation: false,
+                                  organisation: true,
                                 ));
                               },
                             ),
