@@ -1,23 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Organizer {
-  final String? name;
-  final String? phone;
-  final List<String>? services;
-  //  finalGeoPoint locationO;
+  String? name;
+  String? phone;
+  List<String>? services;
+  GeoPoint? locationO;
 
   Organizer({
     this.name,
     this.phone,
     this.services,
+    this.locationO,
   });
 
-  toJason() {
+  toJson() {
     return {
       "name": name,
       "phone": phone,
       "services": services,
-      // "locationO": locationO,
+      "location": locationO,
     };
+  }
+
+  Organizer.fromJson(Map<dynamic, dynamic> map) {
+    if (map == null) {
+      return;
+    }
+    name = map['name'];
+    phone = map['phone'];
+
+    services = List<String>.from(map['services']);
+    locationO = map['location'];
   }
 }
