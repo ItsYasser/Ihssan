@@ -23,7 +23,7 @@ class SliderItem extends StatelessWidget {
       children: [
         //TODO: fontweight bold or regular ?
         Text(
-          "متطوع او متبرع",
+          title,
           style: Theme.of(context).textTheme.headline4?.copyWith(
                 color: kPrimaryColor,
               ),
