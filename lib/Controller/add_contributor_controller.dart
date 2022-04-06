@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_festival/Models/donneur.Class.dart';
+import 'package:flutter_festival/Models/person_model.dart';
 import 'package:get/get.dart';
 
 import '../Util/functions.dart';

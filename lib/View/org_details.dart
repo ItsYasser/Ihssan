@@ -59,7 +59,7 @@ class OrganisationDetails extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        phone_call(org.phone!);
+                        phoneCall(org.phone!);
                       },
                       child: Container(
                         padding: EdgeInsets.all(5),

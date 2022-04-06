@@ -6,14 +6,14 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_festival/Models/donneur.Class.dart';
+import 'package:flutter_festival/Models/person_model.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Util/location.dart';
 import 'package:flutter_festival/View/add_contributor.dart';
 import 'package:flutter_festival/View/add_org.dart';
 import 'package:flutter_festival/View/contributor_details.dart';
 import 'package:flutter_festival/View/filter_screen.dart';
-import 'package:flutter_festival/View/org_detals.dart';
+import 'package:flutter_festival/View/org_details.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
@@ -58,7 +58,6 @@ class MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
     return new Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -66,11 +65,6 @@ class MapScreenState extends State<MapScreen> {
       body: FutureBuilder(
           future: getMarker(),
           builder: (context, snap) {
-            // if (!snap.hasData) {
-            //   return const Center(
-            //     child: CircularProgressIndicator(),
-            //   );
-            // }
             return GetBuilder<FilterController>(
               init: FilterController(widget.choice),
               builder: (controller) => Stack(

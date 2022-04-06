@@ -14,7 +14,6 @@ import 'package:get/get.dart';
 
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
-import '../Widgets/custom_text_field.dart';
 
 class AddContributor extends StatelessWidget {
   AddContributor({Key? key}) : super(key: key);

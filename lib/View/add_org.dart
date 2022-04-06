@@ -18,7 +18,6 @@ import '../Util/functions.dart';
 import '../Util/location.dart';
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
-import '../Widgets/custom_text_field.dart';
 
 class AddOrg extends StatefulWidget {
   AddOrg({Key? key}) : super(key: key);
@@ -254,7 +253,6 @@ class _AddOrgState extends State<AddOrg> {
             await controller
                 .uploadFile("Files/${controller.name}/$upFile", controller.file)
                 .then((value) {
-              print(value);
               controller.url = value;
               controller.addOrganisation();
               Get.back();

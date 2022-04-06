@@ -1,20 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
-import 'package:flutter_festival/Widgets/checkbox.dart';
-import 'package:flutter_svg/svg.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-
-import '../Models/donneur.Class.dart';
+import '../Models/person_model.dart';
 import '../Util/functions.dart';
-import '../Widgets/button_widget.dart';
-import '../Widgets/custom_text_field.dart';
 
 class ContributorDetails extends StatelessWidget {
   final Person person;
-  ContributorDetails({required this.person});
+  ContributorDetails({Key? key, required this.person}) : super(key: key);
 
   double gap = 20;
   @override
@@ -63,7 +56,7 @@ class ContributorDetails extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        phone_call(person.phone!);
+                        phoneCall(person.phone!);
                       },
                       child: Container(
                         padding: EdgeInsets.all(5),
