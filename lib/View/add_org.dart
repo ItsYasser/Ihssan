@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Controller/add_organisation.dart';
 import 'package:flutter_festival/Util/constants.dart';
+import 'package:flutter_festival/Util/functions.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_festival/Widgets/orgClass.dart';
@@ -12,12 +15,22 @@ import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
 import '../Widgets/custom_text_field.dart';
 
-class AddOrg extends StatelessWidget {
+class AddOrg extends StatefulWidget {
   AddOrg({Key? key}) : super(key: key);
-  late String orgName, phoneNumber;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  @override
+  State<AddOrg> createState() => _AddOrgState();
+}
+
+class _AddOrgState extends State<AddOrg> {
+  late String orgName="", phoneNumber="";
+  String upFile="تحميل الملف";
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AddOrganisationController controller = Get.put(AddOrganisationController());
+  String getFileName(String string){
+    return string.split('/').last;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,31 +154,44 @@ class AddOrg extends StatelessWidget {
                               color: kTextColor,
                               fontWeight: FontWeight.bold),
                         ),
-                        Container(
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(kRadius),
-                              color: Colors.white,
-                              boxShadow: kBoxShadow),
-                          padding: EdgeInsets.all(15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "تحميل الملف",
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.grey),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.file_upload_outlined,
-                                color: Colors.grey,
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: ()async{
+                           await controller.selectFile().then((value){
+                              circularDialog();
+                              controller.file=File(value.path??"");
+                              upFile=getFileName(value.path??"");
+                               setState(() {
+                                  Get.back();
+                               });
+
+                            });
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(kRadius),
+                                color: Colors.white,
+                                boxShadow: kBoxShadow),
+                            padding: EdgeInsets.all(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  upFile,
+                                  style:
+                                      TextStyle(fontSize: 16, color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  Icons.file_upload_outlined,
+                                  color: Colors.grey,
+                                )
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -179,10 +205,17 @@ class AddOrg extends StatelessWidget {
       ),
       bottomNavigationBar: Button(
         text: "اضف",
-        onTap: () {
+        onTap: ()async{
           _formKey.currentState?.save();
           if (_formKey.currentState!.validate()) {
-            controller.addOrganisation();
+            circularDialog();
+            await controller.uploadFile("Files/${controller.name}/$upFile",controller.file
+            ).then((value){
+              print(value);
+              controller.url=value;
+              controller.addOrganisation();
+              Get.back();
+            });
           }
         },
         margin: EdgeInsets.only(left: 13, right: 13, bottom: 10),

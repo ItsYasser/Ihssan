@@ -6,14 +6,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_festival/Widgets/orgClass.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../Util/functions.dart';
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_text_field.dart';
 
 class OrgDetails extends StatelessWidget {
-  OrgDetails({Key? key}) : super(key: key);
-  late String orgName, phoneNumber;
+  OrgDetails({Key? key,required this.organizer}) : super(key: key);
+  Organizer organizer;
   double gap = 20;
+  void urlsLauncher(String url)async{
+    if(!await launch(url,forceSafariVC: true,forceWebView: false,)){
+      snackBar(title: "Done".tr,
+          message:"Company added successfully");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +82,8 @@ class OrgDetails extends StatelessWidget {
                                       height: 1),
                                 ),
                                 Text(
-                                  "جمعية البركة",
+                                  organizer.org_name
+                                  ,
                                   style: TextStyle(
                                     fontSize: 17,
                                     color: kTextColor,
@@ -115,27 +124,7 @@ class OrgDetails extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "+213659955555",
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: kTextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: gap,
-                      ),
-                      Text(
-                        "العنوان",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
-                          height: 1,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "حي ديبس المختار - باب الزوار - الجزائر",
+                       organizer.phone_organization,
                         style: TextStyle(
                           fontSize: 17,
                           color: kTextColor,
@@ -195,9 +184,14 @@ class OrgDetails extends StatelessWidget {
                           SizedBox(
                             width: 20,
                           ),
-                          Icon(
-                            Icons.file_download_outlined,
+                          IconButton(
+                            icon: Icon(
+                              Icons.file_download_outlined,
+                            ),
                             color: kSecondaryColor,
+                            onPressed: () {
+
+                            },
                           )
                         ],
                       ),

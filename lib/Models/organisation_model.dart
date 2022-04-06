@@ -1,12 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Organizer {
-  String? name;
-  String? phone;
-  List<String>? services;
-  GeoPoint? locationO;
 
-  Organizer({
+  GeoPoint? locationO;
+ String? name;
+   String? phone;
+   String? urlDownload;
+   PlatformFile? file;
+   List<String>? services;
+  //  finalGeoPoint locationO;
+
+
+  Organizer( {
+    this.urlDownload,
+    this.file,
     this.name,
     this.phone,
     this.services,
@@ -17,6 +25,7 @@ class Organizer {
     return {
       "name": name,
       "phone": phone,
+      "url":urlDownload,
       "services": services,
       "location": locationO,
     };
@@ -28,7 +37,7 @@ class Organizer {
     }
     name = map['name'];
     phone = map['phone'];
-
+    urlDownload = map["url"];
     services = List<String>.from(map['services']);
     locationO = map['location'];
   }
