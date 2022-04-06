@@ -15,3 +15,5 @@ List<BoxShadow> kBoxShadow = [
   )
 ];
 Color kDarkColor = kPrimaryColor.withOpacity(.4);
+const String kOrgMarker = 'assets/images/lamp.png';
+const String kContMarker = 'assets/images/cont.png';

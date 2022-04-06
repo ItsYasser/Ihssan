@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_festival/Controller/add_organisation.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/Util/functions.dart';
+import 'package:flutter_festival/View/add_contributor.dart';
+import 'package:flutter_festival/View/pick_from_map.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_festival/Widgets/orgClass.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
+import '../Util/functions.dart';
+import '../Util/location.dart';
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
 import '../Widgets/custom_text_field.dart';
@@ -23,11 +28,11 @@ class AddOrg extends StatefulWidget {
 }
 
 class _AddOrgState extends State<AddOrg> {
-  late String orgName="", phoneNumber="";
-  String upFile="تحميل الملف";
+  late String orgName = "", phoneNumber = "";
+  String upFile = "تحميل الملف";
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AddOrganisationController controller = Get.put(AddOrganisationController());
-  String getFileName(String string){
+  String getFileName(String string) {
     return string.split('/').last;
   }
 
@@ -106,15 +111,51 @@ class _AddOrgState extends State<AddOrg> {
                           },
                         ),
                         Text(
-                          "العنوان",
+                          "الموقع الجغرافي",
                           style: TextStyle(
                               fontSize: 18,
                               color: kTextColor,
                               fontWeight: FontWeight.bold),
                         ),
-                        CustomField(
-                          hint: "اظغط لتحديد العنوان",
-                          onSaved: (val) {},
+                        Text(
+                          "اختر طريقة لتحديد موقعك الجغرافي",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ContainerIconText(
+                              title: "موقعي الحالي",
+                              icon: Icons.my_location,
+                              onTap: () async {
+                                myDialog(
+                                    "يتم الان تحديد موقعك , الرجاء الانتظار");
+                                Position pos = await determinePosition();
+                                Get.back();
+                                controller.location =
+                                    GeoPoint(pos.latitude, pos.longitude);
+                              },
+                            ),
+                            Text(
+                              "او",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: kTextColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            ContainerIconText(
+                              title: "حدد من الخريطة",
+                              icon: Icons.map,
+                              onTap: () {
+                                Get.to(PickFromMap(
+                                  organisation: false,
+                                ));
+                              },
+                            ),
+                          ],
                         ),
                         Text(
                           "خدمات الجمعية",
@@ -125,7 +166,9 @@ class _AddOrgState extends State<AddOrg> {
                         ),
                         CheckBoxItem(
                             text: "التكفل بذوي الاحتياجات الخاصة",
-                            value: (val, checked) {}),
+                            value: (val, checked) {
+                              controller.servicesHandler(val, checked!);
+                            }),
                         CheckBoxItem(
                             text: "مطاعم الرحمة",
                             value: (val, checked) {
@@ -155,15 +198,14 @@ class _AddOrgState extends State<AddOrg> {
                               fontWeight: FontWeight.bold),
                         ),
                         GestureDetector(
-                          onTap: ()async{
-                           await controller.selectFile().then((value){
+                          onTap: () async {
+                            await controller.selectFile().then((value) {
                               circularDialog();
-                              controller.file=File(value.path??"");
-                              upFile=getFileName(value.path??"");
-                               setState(() {
-                                  Get.back();
-                               });
-
+                              controller.file = File(value.path ?? "");
+                              upFile = getFileName(value.path ?? "");
+                              setState(() {
+                                Get.back();
+                              });
                             });
                           },
                           child: Container(
@@ -180,8 +222,8 @@ class _AddOrgState extends State<AddOrg> {
                               children: [
                                 Text(
                                   upFile,
-                                  style:
-                                      TextStyle(fontSize: 16, color: Colors.grey),
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.grey),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -205,14 +247,15 @@ class _AddOrgState extends State<AddOrg> {
       ),
       bottomNavigationBar: Button(
         text: "اضف",
-        onTap: ()async{
+        onTap: () async {
           _formKey.currentState?.save();
           if (_formKey.currentState!.validate()) {
             circularDialog();
-            await controller.uploadFile("Files/${controller.name}/$upFile",controller.file
-            ).then((value){
+            await controller
+                .uploadFile("Files/${controller.name}/$upFile", controller.file)
+                .then((value) {
               print(value);
-              controller.url=value;
+              controller.url = value;
               controller.addOrganisation();
               Get.back();
             });

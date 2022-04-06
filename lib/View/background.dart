@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BackGround extends StatelessWidget {
-  const BackGround({
+class Splash extends StatelessWidget {
+  const Splash({
     Key? key,
     this.child = const SizedBox.shrink(),
   }) : super(key: key);

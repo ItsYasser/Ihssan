@@ -72,14 +72,18 @@ class ChoiceScreen extends StatelessWidget {
                         imagePath: "assets/images/contributor.svg",
                         title: "متبرع-متطوع",
                         onTap: () {
-                          Get.to(() => MapScreen());
+                          Get.to(() => MapScreen(
+                                choice: "المتبرعين و المتطوعين",
+                              ));
                         },
                       ),
                       ChoiceContainer(
                         imagePath: "assets/images/charity.svg",
                         title: "جمعية خيرية",
                         onTap: () {
-                          Get.to(() => MapScreen());
+                          Get.to(() => MapScreen(
+                                choice: "الجمعيات الخيرية",
+                              ));
                         },
                       ),
                     ],

@@ -45,7 +45,10 @@ dependencies:
   firebase_storage: ^10.2.7
   file_picker: ^4.4.0
   url_launcher: ^6.0.20
-
+  geolocator: ^8.2.0
+  bottom_sheet: ^2.1.0
+  multi_select_flutter: ^4.1.2
+  animated_splash_screen: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

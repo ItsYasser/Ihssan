@@ -2,10 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Controller/add_contributor_controller.dart';
 import 'package:flutter_festival/Util/constants.dart';
+import 'package:flutter_festival/Util/functions.dart';
+import 'package:flutter_festival/Util/location.dart';
+import 'package:flutter_festival/View/pick_from_map.dart';
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_festival/Widgets/orgClass.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../Widgets/button_widget.dart';
@@ -84,24 +88,58 @@ class AddContributor extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         CustomField(
-                          hint: "+213669316927",
+                          hint: "0696316927",
                           keyboardType: TextInputType.phone,
                           onSaved: (val) {
                             controller.phoneNumber = val!;
                           },
                         ),
                         Text(
-                          "العنوان",
+                          "الموقع الجغرافي",
                           style: TextStyle(
                               fontSize: 18,
                               color: kTextColor,
                               fontWeight: FontWeight.bold),
                         ),
-                        CustomField(
-                          hint: "اظغط لتحديد العنوان",
-                          onSaved: (val) {
-                            print(val);
-                          },
+                        Text(
+                          "اختر طريقة لتحديد موقعك الجغرافي",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ContainerIconText(
+                              title: "موقعي الحالي",
+                              icon: Icons.my_location,
+                              onTap: () async {
+                                myDialog(
+                                    "يتم الان تحديد موقعك , الرجاء الانتظار");
+                                Position pos = await determinePosition();
+                                Get.back();
+                                controller.location =
+                                    GeoPoint(pos.latitude, pos.longitude);
+                              },
+                            ),
+                            Text(
+                              "او",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: kTextColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            ContainerIconText(
+                              title: "حدد من الخريطة",
+                              icon: Icons.map,
+                              onTap: () {
+                                Get.to(PickFromMap(
+                                  organisation: false,
+                                ));
+                              },
+                            ),
+                          ],
                         ),
                         Text(
                           "نوع التبرع",
@@ -146,6 +184,9 @@ class AddContributor extends StatelessWidget {
                         CustomField(
                             maxLines: 5,
                             hint: "قدم معلومات او شرح اكثر",
+                            validator: (val) {
+                              return null;
+                            },
                             onSaved: (val) {
                               controller.extraInfo = val!;
                             }),
@@ -169,6 +210,47 @@ class AddContributor extends StatelessWidget {
         },
         margin: EdgeInsets.only(left: 13, right: 13, bottom: 10),
         borderRadius: 13,
+      ),
+    );
+  }
+}
+
+class ContainerIconText extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Function()? onTap;
+
+  const ContainerIconText(
+      {Key? key, required this.title, required this.icon, required this.onTap})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              kRadius,
+            ),
+            color: Colors.white,
+            border: Border.all(
+              color: kPrimaryColor,
+            )),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(
+            icon,
+            color: kSecondaryColor,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: TextStyle(color: kPrimaryColor, fontSize: 16),
+          ),
+        ]),
       ),
     );
   }

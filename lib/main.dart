@@ -1,6 +1,9 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
+import 'package:flutter_festival/View/background.dart';
+import 'package:flutter_festival/View/choice_screen.dart';
 import 'package:flutter_festival/View/map_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,10 +39,19 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: MapScreen(),
+      body: FutureBuilder<void>(
+          future: Future.delayed(Duration(seconds: 5)),
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Splash();
+              default:
+                if (snapshot.hasError)
+                  return Text('Error: ${snapshot.error}');
+                else
+                  return OnBoarding();
+            }
+          }),
     );
   }
 }

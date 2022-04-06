@@ -7,12 +7,14 @@ class CustomField extends StatelessWidget {
   final Function(String?) onSaved;
   final int? maxLines;
   final TextInputType keyboardType;
+  final String? Function(String?)? validator;
   const CustomField({
     Key? key,
     this.hint = "",
     required this.onSaved,
     this.maxLines = 1,
     this.keyboardType = TextInputType.text,
+    this.validator,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,19 +24,23 @@ class CustomField extends StatelessWidget {
         onSaved: onSaved,
         maxLines: maxLines,
         keyboardType: keyboardType,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "الرجاء ملئ الخانة";
-          }
-          if (keyboardType == TextInputType.number ||
-              keyboardType == TextInputType.phone) {
-            if (int.tryParse(value) == null) {
-              //TODO: translate it (add it to dicto)
-              return "الرجاء التحقق من صيغة رقم الهاتف";
-            }
-          }
-          return null;
-        },
+        validator: validator ??
+            (value) {
+              if (value!.isEmpty) {
+                return "الرجاء ملئ الخانة";
+              }
+              if (keyboardType == TextInputType.number ||
+                  keyboardType == TextInputType.phone) {
+                if (int.tryParse(value) == null) {
+                  return "الرجاء التحقق من صيغة رقم الهاتف";
+                } else {
+                  if (value.length != 10) {
+                    return "الرجاء التحقق من صيغة رقم الهاتف";
+                  }
+                }
+              }
+              return null;
+            },
         decoration: InputDecoration(
           contentPadding:
               new EdgeInsets.symmetric(vertical: 10, horizontal: 20),
