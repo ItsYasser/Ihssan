@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Ihsan',
+        title: 'Ihssan',
         debugShowCheckedModeBanner: false,
         home: const HomePage(),
         theme: ThemeData(
