@@ -12,7 +12,7 @@ Volunteering could be one of the best things that we can do to help others, espe
 
   Splash                 |   AddTransactionPage      |  AddIncomePage
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/El-Mysto/Ihsan/blob/master/Screenshots/main.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/AddTransaction.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/IncomeGif.gif?raw=true)
+![](https://github.com/ItsYasser/Ihsan/blob/main/Screenshots/main.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/AddTransaction.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/IncomeGif.gif?raw=true)
 
 
 
