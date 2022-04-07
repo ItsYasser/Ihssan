@@ -1,10 +1,8 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Util/constants.dart';
 import 'package:flutter_festival/View/splash.dart';
-import 'package:flutter_festival/View/choice_screen.dart';
-import 'package:flutter_festival/View/map_screen.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'View/on_boarding.dart';
