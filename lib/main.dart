@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<void>(
-          future: Future.delayed(const Duration(seconds: 5)),
+          future: Future.delayed(const Duration(seconds: 7)),
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
