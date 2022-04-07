@@ -18,6 +18,7 @@ import '../Util/functions.dart';
 import '../Util/location.dart';
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
+import '../Widgets/pick_geoloc_row.dart';
 
 class AddOrg extends StatefulWidget {
   AddOrg({Key? key}) : super(key: key);
@@ -123,38 +124,11 @@ class _AddOrgState extends State<AddOrg> {
                             color: Colors.grey,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ContainerIconText(
-                              title: "موقعي الحالي",
-                              icon: Icons.my_location,
-                              onTap: () async {
-                                myDialog(
-                                    "يتم الان تحديد موقعك , الرجاء الانتظار");
-                                Position pos = await determinePosition();
-                                Get.back();
-                                controller.location =
-                                    GeoPoint(pos.latitude, pos.longitude);
-                              },
-                            ),
-                            Text(
-                              "او",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: kTextColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            ContainerIconText(
-                              title: "حدد من الخريطة",
-                              icon: Icons.map,
-                              onTap: () {
-                                Get.to(PickFromMap(
-                                  organisation: true,
-                                ));
-                              },
-                            ),
-                          ],
+                        PickGeolocRow(
+                          func: (GeoPoint val) {
+                            controller.location = val;
+                          },
+                          isPerson: false,
                         ),
                         Text(
                           "خدمات الجمعية",

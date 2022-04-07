@@ -159,7 +159,6 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   Widget dots(bool selected) {
-    print(selected);
     return AnimatedContainer(
       duration: Duration(seconds: 1),
       margin: const EdgeInsets.symmetric(horizontal: 5),

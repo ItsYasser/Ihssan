@@ -82,7 +82,7 @@ class PickFromMapState extends State<PickFromMap> {
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
-            Get.back();
+            Get.back(result: false);
           },
           child: Icon(
             Icons.arrow_back_ios_rounded,
@@ -124,7 +124,7 @@ class PickFromMapState extends State<PickFromMap> {
                 controller.location = position;
               }
 
-              Get.back();
+              Get.back(result: true);
             },
             text: "تأكيد",
             backGroundColor: kPrimaryColor,

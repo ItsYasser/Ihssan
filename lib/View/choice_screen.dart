@@ -28,6 +28,7 @@ class ChoiceScreen extends StatelessWidget {
             right: size.width * 0.035,
             child: SvgPicture.asset(
               "assets/images/blueLantern.svg",
+              height: size.height * 0.3,
             ),
           ),
           Padding(
@@ -48,7 +49,8 @@ class ChoiceScreen extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline4
-                        ?.copyWith(color: kPrimaryColor),
+                        ?.copyWith(color: kPrimaryColor, height: 1.5),
+                    textAlign: TextAlign.center,
                   ),
                   const Text(
                     "يمكنك الانضمام الينا و مساعدة المحتاجين سواء كشخص\nمتبرع و متطوع او كجمعية خيرية",

@@ -14,19 +14,6 @@ class HelpType extends StatefulWidget {
 }
 
 class _HelpTypeState extends State<HelpType> {
-  List<String> type = ["الجمعيات الخيرية", "المتبرعين و المتطوعين"];
-  List<String> service = [
-    'التكفل بذوي الاحتياجات الخاصة',
-    'مطاعم الرحمة',
-    'قفة رمضان',
-    'جمعيات التبرع بالدم',
-    'مساعدة اليتامى'
-  ];
-  List<String> cont = [
-    'ملابس',
-    'مبلغ نقدي',
-    'غذاء',
-  ];
   List<String> selectedServices = [];
 
   int selectedService = 1;
@@ -37,7 +24,8 @@ class _HelpTypeState extends State<HelpType> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: List.generate(2, (index) => _item(index, type[index])),
+          children:
+              List.generate(type.length, (index) => _item(index, type[index])),
         ),
         const SizedBox(
           height: 10,

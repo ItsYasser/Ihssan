@@ -17,3 +17,16 @@ List<BoxShadow> kBoxShadow = [
 Color kDarkColor = kPrimaryColor.withOpacity(.4);
 const String kOrgMarker = 'assets/images/lamp.png';
 const String kContMarker = 'assets/images/cont.png';
+enum HelpTypeEnum {
+  organisation,
+  person,
+}
+List<String> type = ["الجمعيات الخيرية", "المتبرعين و المتطوعين"];
+List<String> service = [
+  'التكفل بذوي الاحتياجات الخاصة',
+  'مطاعم الرحمة',
+  'قفة رمضان',
+  'جمعيات التبرع بالدم',
+  'مساعدة اليتامى'
+];
+List<String> cont = ['ملابس', 'مبلغ نقدي', 'غذاء', 'تطوع لدار رحمة'];

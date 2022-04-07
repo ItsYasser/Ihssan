@@ -36,6 +36,7 @@ class ChoiceContainer extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   imagePath,
+                  height: size.height * 0.12,
                 ),
                 Text(
                   title,

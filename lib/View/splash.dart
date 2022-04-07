@@ -43,6 +43,7 @@ class Splash extends StatelessWidget {
             right: size.width * 0.035,
             child: SvgPicture.asset(
               "assets/images/lantern.svg",
+              height: size.height * 0.3,
             ),
           ),
           Positioned(
@@ -53,6 +54,7 @@ class Splash extends StatelessWidget {
               transform: Matrix4.rotationY(math.pi),
               child: SvgPicture.asset(
                 "assets/images/lantern.svg",
+                height: size.height * 0.3,
               ),
             ),
           ),
@@ -76,6 +78,7 @@ class Splash extends StatelessWidget {
                         SvgPicture.asset(
                           "assets/images/logo.svg",
                           fit: BoxFit.contain,
+                          height: size.height * 0.25,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 40, top: 5),
@@ -94,10 +97,11 @@ class Splash extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: size.height * 0.03,
                   ),
                   Text(
                     "تطبيق احســان ، تطبيق لرسم البسمة على وجوه المحتاجين",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

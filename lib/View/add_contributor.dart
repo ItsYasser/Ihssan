@@ -2,18 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_festival/Controller/add_contributor_controller.dart';
 import 'package:flutter_festival/Util/constants.dart';
-import 'package:flutter_festival/Util/functions.dart';
-import 'package:flutter_festival/Util/location.dart';
-import 'package:flutter_festival/View/pick_from_map.dart';
+
 import 'package:flutter_festival/Widgets/checkbox.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:get/get.dart';
 
 import '../Widgets/button_widget.dart';
 import '../Widgets/custom_field.dart';
+import '../Widgets/pick_geoloc_row.dart';
 
 class AddContributor extends StatelessWidget {
   AddContributor({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class AddContributor extends StatelessWidget {
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("إضافة تبرع - تطوع",
-            style: Theme.of(context).textTheme.headline4?.copyWith(
+            style: Theme.of(context).textTheme.headline5?.copyWith(
                   color: kPrimaryColor,
                 )),
         elevation: 0,
@@ -107,38 +106,10 @@ class AddContributor extends StatelessWidget {
                             color: Colors.grey,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ContainerIconText(
-                              title: "موقعي الحالي",
-                              icon: Icons.my_location,
-                              onTap: () async {
-                                myDialog(
-                                    "يتم الان تحديد موقعك , الرجاء الانتظار");
-                                Position pos = await determinePosition();
-                                Get.back();
-                                controller.location =
-                                    GeoPoint(pos.latitude, pos.longitude);
-                              },
-                            ),
-                            Text(
-                              "او",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: kTextColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            ContainerIconText(
-                              title: "حدد من الخريطة",
-                              icon: Icons.map,
-                              onTap: () {
-                                Get.to(PickFromMap(
-                                  organisation: false,
-                                ));
-                              },
-                            ),
-                          ],
+                        PickGeolocRow(
+                          func: (GeoPoint val) {
+                            controller.location = val;
+                          },
                         ),
                         Text(
                           "نوع التبرع",

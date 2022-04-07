@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_festival/Controller/data_controller.dart';
 import 'package:flutter_festival/Controller/filter_controller.dart';
 import 'package:flutter_festival/Widgets/button_widget.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ import '../Widgets/help_type.dart';
 
 class FilterScreen extends StatelessWidget {
   FilterController filter = Get.find<FilterController>();
-
+  DataController dataController = Get.find<DataController>();
   FilterScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,8 @@ class FilterScreen extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         onTap: () {
           filter.update();
+          dataController.directions = null;
+          dataController.update();
           Get.back();
         },
         text: "اظهار النتائج",
