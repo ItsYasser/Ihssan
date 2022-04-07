@@ -1,6 +1,12 @@
+<img src="https://github.com/ItsYasser/Ihsan/blob/main/Screenshots/Ihssan.png?raw=true"  /> 
+
 # Flutter_Festival
 Flutter Festivals is a community led event series where developers can join to learn the fundamentals of Google technologies featuring Flutter, Firebase and Google
 Cloud content. GDG Algiers is celebrating Flutter in its own way by hosting a hackathon, a Flutter challenge and more.
+
+# Inspiration
+Many times we want to do good deeds, donate clothes, food, and even money, but it isn't always clear where to do it or to whom to give it.
+
 # About the application
 Giving and helping others is one of the best sensations in this world. , that is a great side of humanity , and our true values are defined not by what we have, but by what we give to others.
 Volunteering could be one of the best things that we can do to help others, especially in this holy month where "الحسنة بعشر امثالها", where there are many poor people who are not able to make "Iftar",and others who cannot stay with their families because of occupations, studies, etc
@@ -37,3 +43,10 @@ Volunteering could be one of the best things that we can do to help others, espe
     <a href="https://drive.google.com/file/d/1D1PPT0Kywkaa1MBcVejmCm88N4skIZPs/view?usp=sharing">
     <img src="https://img.shields.io/badge/Download-c61b1b?style=flat-square">
   </a>
+
+## Accomplishments that we're proud of
+- With the time we had we have built a very nice looking application with useful functions to help people in need
+- Met incredible, talented people
+
+## What's next for Ihssan
+To add more features to the map, more languages, and add various types of services
