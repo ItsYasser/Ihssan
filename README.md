@@ -26,8 +26,8 @@ Volunteering could be one of the best things that we can do to help others, espe
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/ItsYasser/Ihsan/blob/main/Screenshots/home.png?raw=true)|![](https://github.com/ItsYasser/Ihsan/blob/main/Screenshots/Add-org.png?raw=true)|![](https://github.com/ItsYasser/Ihsan/blob/main/Screenshots/filter.png?raw=true)
 
-## More : 
-Adobe-xd prototype : </a>
+## Prototype (with Adobe XD) : 
+</a>
     </a>
     <a href="https://drive.google.com/file/d/1D1PPT0Kywkaa1MBcVejmCm88N4skIZPs/view?usp=sharing">
     <img src="https://img.shields.io/badge/Download-c61b1b?style=flat-square">
