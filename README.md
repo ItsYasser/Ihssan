@@ -9,8 +9,10 @@ Volunteering could be one of the best things that we can do to help others, espe
 - The app links organisations with people in need.
 - Add new items and pick your location 
 - Uploade/download files to verify the validity of the organizations
-- The ability to search anorganizationby name and get its location on the map 
+- The ability to search an organizationby name and get its location on the map 
+- Filtring : in order to facilitate the searching
 - Trace the full iteraniary between the organization and the volunteer location
+
 
 ## ScreenShots Of The App 
 
