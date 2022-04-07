@@ -6,3 +6,16 @@ Giving and helping others is one of the best sensations in this world. , that is
 Volunteering could be one of the best things that we can do to help others, especially in this holy month where "الحسنة بعشر امثالها", where there are many poor people who are not able to make "Iftar",and others who cannot stay with their families because of occupations, studies, etc
 
 # What You Can Do With The App !
+
+
+## ScreenShots Of The App 
+
+  Splash                 |   AddTransactionPage      |  AddIncomePage
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/main.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/AddTransaction.png?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/IncomeGif.gif?raw=true)
+
+
+
+  HistoryPage              |   ChartPage               |  ProfilePage
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/HistoryGif.gif?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/Chart.gif?raw=true)|![](https://github.com/El-Mysto/personal_expenses/blob/master/Screenshots/Profile.png?raw=true)
